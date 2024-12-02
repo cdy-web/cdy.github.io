@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>爱家居</title>
+		<style>
+		*{
+			margin: 0 auto;
+			padding: 0;
+		}
+		/* 第一个板块,大图,背景 */
+		.box1{
+			width: 1200px;
+			position: relative;
+		}
+		/* 导航部分 */
+		.navbar {
+		    list-style-type: none;
+		    padding: 0;
+		    margin: 0;
+			background-color: f3f4f6;
+			left: 320px;
+			top: 0px;
+			position: absolute;
+		}
+		/* 导航列表项 */
+		.navbar > li {
+		    position: relative; /* 设置为相对定位，以便子菜单能够相对于它进行定位 */
+		    display: inline-block;/* 使列表项水平排列 */
+			padding: 15px;
+		}
+		/* 导航列表项的标题 */
+		.navbar > li > h3 > a {
+		    display: block;
+		    padding: 5px 20px;
+		    text-decoration: none;
+			text-align: center;
+		    color: #7d7d7d;
+		}
+		
+		/* 隐藏子菜单 */
+		.submenu {
+		    list-style-type: none;
+		    padding: 0;
+		    margin: 0;
+		    display: none; /* 默认隐藏 */
+		    position: absolute;/*指定位置*/
+		    top: 100%; /* 放置在父元素的底部 */
+		    left: 0;
+		    background-color:f3f4f6;   
+		}
+		/* 子菜单列表项 */
+		.submenu li a {
+		    display: block;
+		    padding: 5px 30px;
+		    text-decoration: none;
+			text-align: center;
+		    color: #7d7d7d;
+		}
+		/* 子菜单列表项鼠标悬停时背景变色 */
+		.submenu li a:hover {
+		    background-color:#ffaa00;
+		}
+		/* 当鼠标悬停在包含子菜单的列表项上时显示子菜单 */
+		.navbar > li:hover .submenu {
+		    display: block;
+		}
+		/* 爱家居logo部分 */
+		.box2{
+			position: absolute;
+			top: 0px;
+			left: 150px;
+		}
+		/* 搜索板块 */
+		.search{
+			width:230px;
+			height: 30px;
+			background-color:#ffffff;
+			border-radius: 20px;/*圆角*/
+			color:#7d7d7d;
+			top:20px;
+			right: 190px;
+			position: absolute;
+		}
+		/* 热门推荐 */
+		.hot{
+			padding: 20px;
+			position: relative;
+			left: 350px;
+		}
+		/* 第三个板块 */
+		.box3{
+			padding: 20px;
+			position: relative;
+			left: 150px;
+			overflow: hidden;
+		}
+		.box3_con{
+			/* 排成一行 */
+			float: left;
+			margin-left: 70px;
+			position:relative;
+			
+		}
+		/* hgroup标签只是对标题进行组合.将会出现在img上的内容板块*/
+		.box3_con hgroup{
+			width: 300px;
+			height: 300px;
+			background-color: rgba(0,0,0,0.5);
+			/* 绝对定位 */
+			position:absolute;
+			left:0;
+			top:0;
+			opacity: 0;
+			/* 使用 opacity 和 visibility 属性来控制 hgroup 的显示和隐藏 */
+			visibility: hidden;
+			transition: opacity 0.5s ease-in-out; /*明确过度效果 */
+			will-change: opacity,visibilty;/* 提示浏览器提前准备动画 */
+			
+		}
+		/* 鼠标悬停时显示文字内容 */
+		.box3_con img:hover + hgroup{
+			opacity: 1;
+			visibility: visible;
+		}
+		/* hgroup内容 */
+		.box3_con .one{
+			width: 290px;
+			height: 50px;
+			padding-top: 160px;
+			padding-left: 10px;
+			line-height: 50px;
+			border-bottom: 1px solid #ddd;
+			color:#fff;
+		}
+		.box3_con .two{
+			width: 284px;
+			height: 70px;
+			line-height: 20px;
+			padding: 10px 0 0 10px;
+			font-size: 12px;
+			color:#ddd;
+		}
+		/* 添加阴影 */
+		.box3_con .shadow{
+			width: 294px;
+			height: 5px;
+		}
+		/* 第四个板块的背景 */
+		.box4{
+			width: 1200px;
+			height: 450px;
+			margin-bottom: 30px;
+			background-color: #e7eff4;
+			position: relative;
+		}
+		/* 夏日生活 */
+		.life{
+			left: 500px;
+			top: 20px;
+			position: absolute;
+		}
+		/* 将3张图片为一个整体 */
+		.picture{
+			left: 130px;
+			top: 100px;
+			position: absolute;
+		}
+		/* 每个图片放大缩小效果 */
+		.move{
+			margin: 10px;
+			padding: 10px 20px;
+		}
+		/* 当鼠标移动到图片上的时候,图片放大,鼠标离开图片恢复 */
+		.move:hover{
+			transform: scale(1.2);
+			transition: all 3s;
+		}
+		/* 版权的背景 */
+		.copyright{
+			width: 1200px;
+			height: 50px;
+			background-color: #004998;
+			position:relative;
+		}
+		/* 版权的内容 */
+		.contant{
+			top: 13px;
+			text-align: center;
+			color: #ffffff;
+			position:relative;
+		}
+		/* 悬浮 */
+		.suspend{
+			/* 位于屏幕右下角 */
+			position: fixed;
+			right: 0;
+			bottom: 0;
+			animation: play 4s linear infinite;
+		}
+		@keyframes play{
+				0%{transform: rotate(0deg);}
+				/* 向左45度旋转 */
+				25%{transform: rotate(45deg);}
+				50%{transform: rotate(0deg);}
+				75%{transform: rotate(-45deg);}
+				100%{transform: rotate(0deg);}
+		}
+		
+		
+		</style>
+	</head>
+	<body>
+		<div class="box1">
+			<img src="img/bg.png"/>  <!--第一张大图，背景 -->
+		</div>
+		<div class="box2">
+			<img src="img/logo.png"/>  <!--爱家居logo -->
+		</div>
+		<div class="search">
+			<img src="img/f.png"/>  <!--搜索图标-->
+			<input placeholder="输入商品名称">
+		</div>
+		<!-- 导航 -->
+		<div>
+			<ul class="navbar">
+				<li>
+					<h3>
+						<a href="#">网络首页</a>
+					</h3>
+				</li>
+				<li>
+					<h3>
+						<a href="#">床和床垫</a>
+					</h3>
+					<ul class="submenu">
+						<li><a href="#">床</a></li>
+						<li><a href="#">床垫</a></li>
+						<li><a href="#">床上用品</a></li>
+						<li><a href="#">床头柜</a></li>
+						<li><a href="#">床底收纳</a></li>
+					</ul>
+				</li>
+				<li>
+					<h3>
+						<a href="#">卧室纺织品</a>
+					</h3>
+					<ul class="submenu">
+						<li><a href="#">床上用品</a></li>
+						<li><a href="#">窗帘和卷帘</a></li>
+						<li><a href="#">靠垫和靠垫套</a></li>
+						<li><a href="#">儿童家纺</a></li>
+						<li><a href="#">婴儿家纺</a></li>
+					</ul>
+				<li>
+					<h3>
+						<a href="#">灯具照明</a>
+					</h3>
+					<ul class="submenu">
+						<li><a href="#">智能照明</a></li>
+						<li><a href="#">户外照明</a></li>
+						<li><a href="#">浴室照明</a></li>
+						<li><a href="#">LED灯泡</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!-- 热门推荐 -->
+		<div class="hot">
+			<img src="img/dongtai.jpg"/>
+		</div>
+		<div class="box3">
+			<div  class="box3_con">
+				<img src="img/news1.jpg"/>
+				<hgroup>
+					<h2  class="one">BEST贝达</h2>
+					<p class="two">将杂乱无章的物品收纳到视线之外，在玻璃柜门后展示自己的心爱之物！</p>
+					<p class="shadow"></p>
+				</hgroup>
+				
+			</div>
+			<div  class="box3_con">
+				<img src="img/news2.jpg"/>
+				<hgroup>
+					<h2  class="one">PONG波昂</h2>
+					<p class="two">当孩子能做大人做的事，他们会觉得自己很特别也很重要，这也是我们打造PONG波昂儿童扶手椅的原因。现在你们可以并排坐在一起尽情放松了。</p>
+					<p class="shadow"></p>
+				</hgroup>
+				
+			</div>
+			<div  class="box3_con">
+				<img src="img/news3.jpg"/>
+				<hgroup>
+					<h2 class="one">GUNDE冈德尔</h2>
+					<p class="two">一把椅子蕴含多少亮点？这一款，就值得你多看几眼。它可以折叠，但也很安全。它可以承受100公斤的重量，但是本身却很轻盈。</p>
+					<p class="shadow"></p>
+				</hgroup>
+			</div>
+		</div>
+		<div class="box4">
+			<div class="life">
+				<img src="img/shenghuo.png"/>
+			</div>
+			<div class="picture">
+				<img src="img/img1.jpg" class="move"/>
+				<img src="img/img2.jpg" class="move"/>
+				<img src="img/img3.jpg" class="move"/>
+			</div>
+		</div>
+		<div class="copyright">
+			<div class="contant">
+				<p>爱家居版权所有2016-2026京ICP备2222222号 京公网安备22222222222</p>
+			</div>
+			<div>
+				<img src="img/footer_bg.jpg"/> 
+			</div>
+		</div>
+		<div class="suspend">
+			<img src="img/erweima.png"/>
+		</div>
+	</body>
+</html>
